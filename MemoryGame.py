@@ -3,7 +3,7 @@ from time import sleep
 
 
 max_number = 101
-show_list_time = 0.7
+show_list_time = 1
 
 
 def generate_sequence(difficulty):
