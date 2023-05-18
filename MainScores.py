@@ -1,3 +1,4 @@
+import Utils
 from flask import Flask, request
 
 app = Flask("WorldOfGames")
@@ -6,7 +7,7 @@ app = Flask("WorldOfGames")
 @app.route('/score', methods=['GET'])
 def score_server():
     try:
-        handler = open('scores.txt', 'r')
+        handler = open(Utils.SCORES_FILE_NAME, 'r')
         score = handler.read()
         h1_content = f'The score is <div id="score">{score}</div>'
     except Exception as e:
@@ -24,9 +25,4 @@ def score_server():
     return html
 
 
-@app.route('/')
-def my_func():
-    return "Hello and welcome to the World Of Games"
-
-
-app.run(host="0.0.0.0", port=8080, debug=True)
+app.run(host="0.0.0.0", port=8080, debug=False)
