@@ -1,7 +1,7 @@
 import Utils
-from flask import Flask, request
+from flask import Flask, render_template
 
-app = Flask("WorldOfGames")
+app = Flask("WorldOfGames", template_folder='templates')
 
 
 @app.route('/score', methods=['GET'])
@@ -9,20 +9,15 @@ def score_server():
     try:
         handler = open(Utils.SCORES_FILE_NAME, 'r')
         score = handler.read()
-        h1_content = f'The score is <div id="score">{score}</div>'
-    except Exception as e:
-        h1_content = f'<div id="score" style="color:red">{e}</div>'
-
-    html = f'''
-                <html>
-                    <head>
-                    <title>Scores Game</title>
-                    </head>
-                    <body>
-                    <h1>{h1_content}</h1>
-                    </body>
-                </html>'''
-    return html
+        return render_template(
+            "score.html.j2",
+            score=score
+        )
+    except Exception as error:
+        return render_template(
+            "error.html.j2",
+            error=error
+        )
 
 
 app.run(host="0.0.0.0", port=8080, debug=False)
