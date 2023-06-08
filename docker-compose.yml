@@ -1,0 +1,7 @@
+services:
+  wog-score:
+    image: "wog-score"
+    container_name: wog-score
+    build: .
+    ports:
+      - "8080:8080"
