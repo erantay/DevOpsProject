@@ -22,4 +22,4 @@ def main_function():
     return test_scores_service('http://localhost:8080/score')
 
 
-print(main_function())
+main_function()
