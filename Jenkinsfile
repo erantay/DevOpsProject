@@ -4,7 +4,7 @@ node {
         git 'https://github.com/erantay/DevOpsProject.git'
     }
     stage("build"){
-        sh "docker images"
+        //sh "docker images"
     }
     stage("run"){
 
