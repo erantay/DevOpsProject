@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "yosale/wog-score"
-        registryCredential = 'dockerhub'
+        registryCredential = 'dockerhub-account'
         dockerImage = ''
     }
     agent any
