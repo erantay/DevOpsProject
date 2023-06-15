@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh "ls -ltr"
+                sh "python3 /tests/e2e.py"
             }
         }
         stage('Finalize') {
