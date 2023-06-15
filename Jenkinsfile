@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "https://hub.docker.com"
+        registry = "yosale/wog-score"
         registryCredential = 'dockerhub-account'
         dockerImage = ''
     }
@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy our image') {
             steps {
                 script {
-                    docker.withRegistry('', registryCredential) {
+                    docker.withRegistry('https://hub.docker.com/', registryCredential) {
                         dockerImage.push()
                     }
                 }
