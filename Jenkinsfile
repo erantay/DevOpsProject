@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "yosale/wog-score"
+        registry = "https://hub.docker.com"
         registryCredential = 'dockerhub-account'
         dockerImage = ''
     }
