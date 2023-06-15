@@ -11,25 +11,31 @@ pipeline {
                 git 'https://github.com/erantay/DevOpsProject.git'
             }
         }
-        stage('Building our image') {
+        stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build registry
                 }
             }
         }
-        stage('Deploy our image') {
+        stage('Run') {
+            steps {
+                sh "docker compose up"
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "ls -ltr"
+            }
+        }
+        stage('Finalize') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', registryCredential) {
+                    docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
                 }
-            }
-        }
-        stage('Cleaning up') {
-            steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"
+                sh "docker rmi $registry"
             }
         }
     }
